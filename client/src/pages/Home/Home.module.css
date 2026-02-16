@@ -1,0 +1,232 @@
+.page {
+  width: 100%;
+}
+
+/* HERO */
+.hero {
+  padding: 64px 0;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.kicker {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+.h1 {
+  font-size: 44px;
+  line-height: 1.05;
+  margin: 0 0 12px 0;
+}
+
+.p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0 0 18px 0;
+  opacity: 0.92;
+}
+
+.ctaRow {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+/* mic tweak pe butoane doar pt pagina asta */
+.btn {
+  padding: 10px 14px; /* mai compact */
+  font-size: 14px;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  opacity: 0.9;
+}
+
+/* CARD (dreapta) */
+.heroCard {
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.heroCardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+.heroCardLine {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.10);
+  margin: 14px 0;
+}
+
+.heroCardNote {
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* SECTION */
+.section {
+  padding: 48px 0;
+}
+
+.h2 {
+  font-size: 28px;
+  margin: 0 0 18px 0;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.card {
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.cardTitle {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.cardText {
+  font-size: 14px;
+  line-height: 1.55;
+  opacity: 0.9;
+}
+
+/* =========================
+   RESPONSIVE (MOBIL)
+   ========================= */
+
+/* Tablete */
+@media (max-width: 900px) {
+  .hero {
+    padding: 52px 0;
+  }
+
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .h1 {
+    font-size: 36px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Telefon */
+@media (max-width: 520px) {
+  .hero {
+    padding: 38px 0;
+  }
+
+  .kicker {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .h1 {
+    font-size: 28px;
+    line-height: 1.08;
+    margin-bottom: 10px;
+  }
+
+  .p {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .ctaRow {
+    gap: 10px;
+  }
+
+  .btn {
+    padding: 9px 12px;
+    font-size: 13px;
+  }
+
+  .badge {
+    font-size: 11px;
+    padding: 5px 9px;
+  }
+
+  .heroCard {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .heroCardTitle {
+    font-size: 15px;
+  }
+
+  .list {
+    font-size: 13px;
+    padding-left: 16px;
+  }
+
+  .heroCardNote {
+    font-size: 12px;
+  }
+
+  .section {
+    padding: 36px 0;
+  }
+
+  .h2 {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .cardTitle {
+    font-size: 14px;
+  }
+
+  .cardText {
+    font-size: 13px;
+  }
+}
