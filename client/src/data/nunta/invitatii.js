@@ -45,5 +45,21 @@ export default {
       ],
       images: ["../../../public/img/nunta/invitatii/invitatie-nunta-ziar.png"]
     },
+    {
+  id: "inv-04",
+  name: "Invitație florală cu clapetă decupată (Elegant Blush)",
+  priceFrom: 4,
+  unit: "lei/buc",
+  details: [
+    "Design romantic cu flori watercolor în nuanțe blush & ivory",
+    "Clapetă superioară decupată elegant (stil plic luxury)",
+    "Carton premium gros, finisaj mat sau ușor texturat",
+    "Accente aurii fine pentru un aspect sofisticat",
+    "Personalizare completă: nume, dată, locație, program",
+    "Se poate realiza cu plic și sigiliu wax (opțional)"
+  ],
+  images: ["../../../public/img/nunta/invitatii/invitatie-nunta-tip-plic.png"]
+}
+
   ]
 };

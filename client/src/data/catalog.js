@@ -7,6 +7,9 @@ import nunta_tavita_mire from "./nunta/tavita-mire.js";
 import nunta_tavita_mireasa from "./nunta/tavita-mireasa.js";
 import nunta_aranjamente_masina from "./nunta/aranjamente-masina.js";
 
+// ✅ NOU: Plicuri cu bani (Nuntă)
+import nunta_plicuri_cu_bani from "./nunta/plicuri-bani.js";
+
 import botez_invitatii from "./botez/invitatii.js";
 import botez_marturii from "./botez/marturii.js";
 import botez_aranjamente from "./botez/aranjamente.js";
@@ -14,6 +17,9 @@ import botez_panou_invitati from "./botez/panou-invitati.js";
 import botez_trusou from "./botez/trusou.js";
 import botez_baita_a_doua_zi from "./botez/baita-a-doua-zi.js";
 import botez_haine_bebe from "./botez/haine-bebe.js";
+
+// ✅ NOU: Plicuri cu bani (Botez)
+import botez_plicuri_cu_bani from "./botez/plicuri-bani.js";
 
 // ✅ MOT (folder: client/src/data/mot/)
 import mot_tavita_mot from "./mot/tavita-mot.js";
@@ -29,6 +35,10 @@ export const CATALOG = {
     "invitatii-digitale": nunta_invitatii_digitale,
     marturii: nunta_marturii,
     aranjamente: nunta_aranjamente,
+
+    // ✅ NOU
+    "plicuri-cu-bani": nunta_plicuri_cu_bani,
+
     "panou-intrare-invitati": nunta_panou_intrare_invitati,
     "tavita-mire": nunta_tavita_mire,
     "tavita-mireasa": nunta_tavita_mireasa,
@@ -39,6 +49,10 @@ export const CATALOG = {
     invitatii: botez_invitatii,
     marturii: botez_marturii,
     aranjamente: botez_aranjamente,
+
+    // ✅ NOU
+    "plicuri-cu-bani": botez_plicuri_cu_bani,
+
     "panou-invitati": botez_panou_invitati,
     trusou: botez_trusou,
     "baita-a-doua-zi": botez_baita_a_doua_zi,

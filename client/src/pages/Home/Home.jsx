@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
+import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -8,9 +9,12 @@ export default function Home() {
         <div className={`container ${styles.heroGrid}`}>
           <div>
             <div className={styles.kicker}>Glowing Luxe Candles</div>
-            <h1 className={styles.h1}>Eleganță, lumină și detalii premium pentru evenimente.</h1>
+            <h1 className={styles.h1}>
+              Eleganță, lumină și detalii premium pentru evenimente.
+            </h1>
             <p className={styles.p}>
-              Nuntă, botez sau evenimente private — creăm invitații, mărturii, aranjamente și decor în stil luxury.
+              Nuntă, botez sau evenimente private — creăm invitații, mărturii,
+              aranjamente și decor în stil luxury.
             </p>
 
             <div className={styles.ctaRow}>
@@ -27,6 +31,46 @@ export default function Home() {
               <span className={styles.badge}>Personalizat</span>
               <span className={styles.badge}>Luxury</span>
             </div>
+
+            {/* ✅ SOCIAL MEDIA */}
+<div className={styles.socialBlock}>
+  <p className={styles.socialText}>
+    Ne găsești și pe rețelele sociale ✨
+  </p>
+
+  <div className={styles.socialRow}>
+    <a
+      href="https://facebook.com/link-ul-tau"
+      target="_blank"
+      rel="noreferrer"
+      className={styles.socialIcon}
+      aria-label="Facebook"
+    >
+      <FaFacebookF />
+    </a>
+
+    <a
+      href="https://tiktok.com/@contul-tau"
+      target="_blank"
+      rel="noreferrer"
+      className={styles.socialIcon}
+      aria-label="TikTok"
+    >
+      <FaTiktok />
+    </a>
+
+    <a
+      href="https://instagram.com/profilul-tau"
+      target="_blank"
+      rel="noreferrer"
+      className={styles.socialIcon}
+      aria-label="Instagram"
+    >
+      <FaInstagram />
+    </a>
+  </div>
+</div>
+
           </div>
 
           <div className={styles.heroCard}>
@@ -59,17 +103,23 @@ export default function Home() {
           <div className={styles.cards}>
             <div className={styles.card}>
               <div className={styles.cardTitle}>Aesthetic premium</div>
-              <div className={styles.cardText}>Detalii fine, materiale elegante și finisaje gold.</div>
+              <div className={styles.cardText}>
+                Detalii fine, materiale elegante și finisaje gold.
+              </div>
             </div>
 
             <div className={styles.card}>
               <div className={styles.cardTitle}>Pachete flexibile</div>
-              <div className={styles.cardText}>Alegi ce ai nevoie: basic, premium sau complet.</div>
+              <div className={styles.cardText}>
+                Alegi ce ai nevoie: basic, premium sau complet.
+              </div>
             </div>
 
             <div className={styles.card}>
               <div className={styles.cardTitle}>Personalizare</div>
-              <div className={styles.cardText}>Culori, fonturi, etichete și tematică exact ca la voi.</div>
+              <div className={styles.cardText}>
+                Culori, fonturi, etichete și tematică exact ca la voi.
+              </div>
             </div>
           </div>
         </div>

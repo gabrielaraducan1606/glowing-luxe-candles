@@ -1,6 +1,6 @@
 import { useMemo, useState, useCallback, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../../assets/logo.png";
 
 const INITIAL_EXPANDED = { nunta: false, botez: false, copii: false, mot: false };
 
@@ -18,10 +18,14 @@ export function Header() {
           { label: "Invitații digitale", slug: "invitatii-digitale" },
           { label: "Mărturii", slug: "marturii" },
           { label: "Aranjamente", slug: "aranjamente" },
+
+          // ✅ NOU
+          { label: "Plicuri cu bani", slug: "plicuri-cu-bani" },
+
           { label: "Panou intrare invitați", slug: "panou-intrare-invitati" },
           { label: "Tăviță mire", slug: "tavita-mire" },
           { label: "Tăviță mireasă", slug: "tavita-mireasa" },
-          { label: "Aranjamente mașină", slug: "aranjamente-masina" },
+          { label: "Aranjamente mașină", slug: "aranjamente-masina" }
         ]
       },
       {
@@ -31,6 +35,10 @@ export function Header() {
           { label: "Invitații", slug: "invitatii" },
           { label: "Mărturii", slug: "marturii" },
           { label: "Aranjamente", slug: "aranjamente" },
+
+          // ✅ NOU
+          { label: "Plicuri cu bani", slug: "plicuri-cu-bani" },
+
           { label: "Panou invitați", slug: "panou-invitati" },
           { label: "Trusou", slug: "trusou" },
           { label: "Băița de a doua zi", slug: "baita-a-doua-zi" },
@@ -38,13 +46,10 @@ export function Header() {
         ]
       },
       {
-  key: "mot",
-  label: "Moț",
-  items: [
-    { label: "Tăviță moț", slug: "tavita-mot" }
-  ]
-}
-,
+        key: "mot",
+        label: "Moț",
+        items: [{ label: "Tăviță moț", slug: "tavita-mot" }]
+      },
       {
         key: "copii",
         label: "Copii",
@@ -88,11 +93,21 @@ export function Header() {
   return (
     <header className="header">
       <div className="container headerRow">
-        <Link to="/" className="brandLink" aria-label="Glowing Luxe Candles" onClick={closeMenu}>
+        <Link
+          to="/"
+          className="brandLink"
+          aria-label="Glowing Luxe Candles"
+          onClick={closeMenu}
+        >
           <img src={logo} className="logoImg" alt="Glowing Luxe Candles" />
         </Link>
 
-        <button className="burger" aria-label="Open menu" aria-expanded={open} onClick={toggleMenu}>
+        <button
+          className="burger"
+          aria-label="Open menu"
+          aria-expanded={open}
+          onClick={toggleMenu}
+        >
           <span className={`burgerLine ${open ? "x1" : ""}`} />
           <span className={`burgerLine ${open ? "x2" : ""}`} />
           <span className={`burgerLine ${open ? "x3" : ""}`} />
@@ -103,7 +118,11 @@ export function Header() {
 
       <aside className={`drawer ${open ? "open" : ""}`} aria-hidden={!open}>
         <div className="drawerTop">
-          <div className="drawerTitle">Menu</div>
+          {/* ✅ LOGO în drawer */}
+          <Link to="/" onClick={closeMenu} className="drawerLogo" aria-label="Home">
+            <img src={logo} alt="Glowing Luxe Candles" />
+          </Link>
+
           <button className="drawerClose" onClick={closeMenu} aria-label="Close menu">
             ✕
           </button>
@@ -146,8 +165,6 @@ export function Header() {
               </div>
             ))}
           </div>
-
-          {/* ✅ am scos link-ul Galerie */}
 
           <NavLink
             to="/contact"
