@@ -8,8 +8,8 @@ export default function CategoryPage() {
   const { group, slug } = useParams();
   const data = CATALOG?.[group]?.[slug];
 
-  // ✅ setează numărul tău aici (fără +, fără spații)
-  const WHATSAPP_NUMBER = "407XXXXXXXX";
+  // ✅ numărul tău WhatsApp (fără +, fără spații)
+  const WHATSAPP_NUMBER = "40765350676";
 
   // lightbox state
   const [lbOpen, setLbOpen] = useState(false);
@@ -46,7 +46,7 @@ export default function CategoryPage() {
   const prev = () => setLbIndex((i) => Math.max(0, i - 1));
   const next = () => setLbIndex((i) => Math.min(lbImages.length - 1, i + 1));
 
-  // ✅ helper: compune mesaj WhatsApp pentru un produs
+  // ✅ link WhatsApp per produs (conversație direct cu tine + mesaj precompletat)
   const buildWhatsappLinkForProduct = (p) => {
     const categoryTitle = data?.title || `${group}/${slug}`;
 
@@ -71,7 +71,7 @@ export default function CategoryPage() {
       priceText ? priceText : null,
       detailsText ? detailsText : null,
       "",
-      "Date eveniment: ________",
+      "Data evenimentului: ________",
       "Localitate: ________",
       "Cantitate / nr. invitați: ________",
       "Tema/culori: ________",
@@ -81,8 +81,7 @@ export default function CategoryPage() {
       .filter(Boolean)
       .join("\n");
 
-    const encoded = encodeURIComponent(msg);
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
   };
 
   // ESC + arrows
@@ -96,6 +95,7 @@ export default function CategoryPage() {
     };
 
     window.addEventListener("keydown", onKeyDown);
+
     // lock scroll
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";

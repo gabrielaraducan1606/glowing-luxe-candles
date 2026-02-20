@@ -4,11 +4,23 @@ import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 
 export default function Home() {
 
+  // ✅ PUNE NUMĂRUL TĂU REAL (fără +, fără spații)
+  const WHATSAPP_NUMBER = "40765350676";
+
   const whatsappMessage = encodeURIComponent(
-    "Bună ziua ✨\n\nAș dori o ofertă personalizată pentru un eveniment.\nData evenimentului: \nTip eveniment: \nBuget aproximativ: \n\nMulțumesc!"
+    `Bună ziua ✨
+
+Aș dori o ofertă personalizată pentru un eveniment.
+
+Data evenimentului:
+Tip eveniment:
+Număr invitați:
+Buget aproximativ:
+
+Mulțumesc!`
   );
 
-  const whatsappLink = `https://wa.me/qr/TJLNLSY2UY3ME1?text=${whatsappMessage}`;
+  const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
 
   return (
     <div className={styles.page}>
@@ -16,23 +28,26 @@ export default function Home() {
         <div className={`container ${styles.heroGrid}`}>
           <div>
             <div className={styles.kicker}>Glowing Luxe Candles</div>
+
             <h1 className={styles.h1}>
               Eleganță, lumină și detalii premium pentru evenimente.
             </h1>
+
             <p className={styles.p}>
               Nuntă, botez sau evenimente private — creăm invitații, mărturii,
               aranjamente și decor în stil luxury.
             </p>
 
             <div className={styles.ctaRow}>
-              {/* 🔥 BUTON WHATSAPP */}
+              {/* ✅ BUTON WHATSAPP DIRECT CU TINE */}
               <a
                 href={whatsappLink}
                 target="_blank"
                 rel="noreferrer"
                 className={`btnGold ${styles.btn}`}
+                style={{ display: "inline-flex", alignItems: "center", gap: 8 }}
               >
-                <FaWhatsapp style={{ marginRight: "8px" }} />
+                <FaWhatsapp />
                 Cere ofertă pe WhatsApp
               </a>
             </div>
@@ -61,7 +76,7 @@ export default function Home() {
                 </a>
 
                 <a
-                  href="https://www.tiktok.com/@glowingluxecandles?_r=1&_t=ZN-93YO4Bjfkc2"
+                  href="https://www.tiktok.com/@glowingluxecandles"
                   target="_blank"
                   rel="noreferrer"
                   className={styles.socialIcon}
@@ -71,7 +86,7 @@ export default function Home() {
                 </a>
 
                 <a
-                  href="https://www.instagram.com/glowing.luxe.candles?utm_source=qr&igsh=eWw4enFuOGhud3lr"
+                  href="https://www.instagram.com/glowing.luxe.candles"
                   target="_blank"
                   rel="noreferrer"
                   className={styles.socialIcon}
