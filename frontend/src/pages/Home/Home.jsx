@@ -40,7 +40,7 @@ export default function Home() {
 
   <div className={styles.socialRow}>
     <a
-      href="https://facebook.com/link-ul-tau"
+      href="https://www.facebook.com/share/1BUnn7Ffym/"
       target="_blank"
       rel="noreferrer"
       className={styles.socialIcon}
@@ -50,7 +50,7 @@ export default function Home() {
     </a>
 
     <a
-      href="https://tiktok.com/@contul-tau"
+      href="https://www.tiktok.com/@glowingluxecandles?_r=1&_t=ZN-93YO4Bjfkc2"
       target="_blank"
       rel="noreferrer"
       className={styles.socialIcon}
@@ -60,7 +60,7 @@ export default function Home() {
     </a>
 
     <a
-      href="https://instagram.com/profilul-tau"
+      href="https://www.instagram.com/glowing.luxe.candles?utm_source=qr&igsh=eWw4enFuOGhud3lr"
       target="_blank"
       rel="noreferrer"
       className={styles.socialIcon}
