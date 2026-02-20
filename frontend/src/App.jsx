@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header/Header.jsx";
 import Home from "./pages/Home/Home.jsx";
 import Services from "./pages/Services.jsx";
@@ -8,7 +8,7 @@ import "./styles.css";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <>
       <Header />
       <main className="main">
         <Routes>
@@ -18,6 +18,6 @@ export default function App() {
           <Route path="/:group/:slug" element={<CategoryPage />} />
         </Routes>
       </main>
-    </BrowserRouter>
+    </>
   );
 }

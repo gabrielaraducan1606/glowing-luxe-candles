@@ -1,6 +1,7 @@
 import { useMemo, useState, useCallback, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import styles from "./Header.module.css";
 
 const INITIAL_EXPANDED = { nunta: false, botez: false, copii: false, mot: false };
 
@@ -18,10 +19,7 @@ export function Header() {
           { label: "Invitații digitale", slug: "invitatii-digitale" },
           { label: "Mărturii", slug: "marturii" },
           { label: "Aranjamente", slug: "aranjamente" },
-
-          // ✅ NOU
           { label: "Plicuri cu bani", slug: "plicuri-cu-bani" },
-
           { label: "Panou intrare invitați", slug: "panou-intrare-invitati" },
           { label: "Tăviță mire", slug: "tavita-mire" },
           { label: "Tăviță mireasă", slug: "tavita-mireasa" },
@@ -35,21 +33,14 @@ export function Header() {
           { label: "Invitații", slug: "invitatii" },
           { label: "Mărturii", slug: "marturii" },
           { label: "Aranjamente", slug: "aranjamente" },
-
-          // ✅ NOU
           { label: "Plicuri cu bani", slug: "plicuri-cu-bani" },
-
           { label: "Panou invitați", slug: "panou-invitati" },
           { label: "Trusou", slug: "trusou" },
           { label: "Băița de a doua zi", slug: "baita-a-doua-zi" },
           { label: "Haine bebe", slug: "haine-bebe" }
         ]
       },
-      {
-        key: "mot",
-        label: "Moț",
-        items: [{ label: "Tăviță moț", slug: "tavita-mot" }]
-      },
+      { key: "mot", label: "Moț", items: [{ label: "Tăviță moț", slug: "tavita-mot" }] },
       {
         key: "copii",
         label: "Copii",
@@ -65,6 +56,10 @@ export function Header() {
   );
 
   const closeMenu = useCallback(() => {
+    // evită warning-ul aria-hidden/focus
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     setOpen(false);
     setExpanded(INITIAL_EXPANDED);
   }, []);
@@ -72,7 +67,7 @@ export function Header() {
   const toggleMenu = useCallback(() => {
     setOpen((prev) => {
       const next = !prev;
-      if (next) setExpanded(INITIAL_EXPANDED); // reset doar când se DESCHIDE
+      if (next) setExpanded(INITIAL_EXPANDED);
       return next;
     });
   }, []);
@@ -81,7 +76,6 @@ export function Header() {
     setExpanded((s) => ({ ...s, [key]: !s[key] }));
   }, []);
 
-  // ESC închide meniul
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.key === "Escape") closeMenu();
@@ -93,21 +87,11 @@ export function Header() {
   return (
     <header className="header">
       <div className="container headerRow">
-        <Link
-          to="/"
-          className="brandLink"
-          aria-label="Glowing Luxe Candles"
-          onClick={closeMenu}
-        >
+        <Link to="/" className="brandLink" aria-label="Glowing Luxe Candles" onClick={closeMenu}>
           <img src={logo} className="logoImg" alt="Glowing Luxe Candles" />
         </Link>
 
-        <button
-          className="burger"
-          aria-label="Open menu"
-          aria-expanded={open}
-          onClick={toggleMenu}
-        >
+        <button className="burger" aria-label="Open menu" aria-expanded={open} onClick={toggleMenu}>
           <span className={`burgerLine ${open ? "x1" : ""}`} />
           <span className={`burgerLine ${open ? "x2" : ""}`} />
           <span className={`burgerLine ${open ? "x3" : ""}`} />
@@ -116,14 +100,14 @@ export function Header() {
 
       <div className={`menuOverlay ${open ? "open" : ""}`} onClick={closeMenu} />
 
-      <aside className={`drawer ${open ? "open" : ""}`} aria-hidden={!open}>
-        <div className="drawerTop">
-          {/* ✅ LOGO în drawer */}
-          <Link to="/" onClick={closeMenu} className="drawerLogo" aria-label="Home">
+      {/* scoatem aria-hidden ca să nu mai apară warning-ul */}
+      <aside className={`drawer ${open ? "open" : ""}`}>
+        <div className={styles.drawerTop}>
+          <Link to="/" onClick={closeMenu} className={styles.drawerLogo} aria-label="Home">
             <img src={logo} alt="Glowing Luxe Candles" />
           </Link>
 
-          <button className="drawerClose" onClick={closeMenu} aria-label="Close menu">
+          <button className={styles.drawerClose} onClick={closeMenu} aria-label="Close menu">
             ✕
           </button>
         </div>
