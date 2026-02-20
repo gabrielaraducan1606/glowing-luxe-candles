@@ -17,7 +17,7 @@ export default {
         "Montaj & demontaj (în oraș) incluse",
         "Personalizare culori la cerere"
       ],
-      images: ["../../../public/img/nunta/aranjament/aranjament-nunta.jpeg"]
+      images: ["/img/nunta/aranjament/aranjament-nunta.jpeg"]
     },
   ]
 };

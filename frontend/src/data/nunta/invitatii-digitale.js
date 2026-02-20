@@ -1,5 +1,5 @@
 export default {
-  title: "Aranjamente botez",
-  description: "Aranjamente elegante pentru botez, personalizate.",
+  title: "Invitatii difitale nuntă",
+  description: "Invitații digitale pentru nuntă, personalizate.",
   products: []
 };

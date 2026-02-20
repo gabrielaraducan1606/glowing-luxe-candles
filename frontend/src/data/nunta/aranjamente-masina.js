@@ -8,7 +8,7 @@ export default {
       priceFrom: 350,
       unit: "lei",
       details: ["Flori premium", "Montaj inclus", "Culori la alegere"],
-      images: ["../../../public/img/nunta/aranjamente-masina/aranjament-masina.jpeg"]
+      images: ["/img/nunta/aranjamente-masina/aranjament-masina.jpeg"]
     }
   ]
 };

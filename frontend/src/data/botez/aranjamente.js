@@ -17,7 +17,7 @@ export default {
         "Montaj & demontaj (în oraș) incluse",
         "Culori la alegere: roz/mentă/bej sau orice paletă"
       ],
-      images: ["../../../public/img/botez/aranjamente/aranjement-botez1.png"]
+      images: ["/img/botez/aranjamente/aranjement-botez1.png"]
     },
   ]
 };

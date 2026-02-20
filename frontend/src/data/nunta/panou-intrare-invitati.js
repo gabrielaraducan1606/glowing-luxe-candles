@@ -17,7 +17,7 @@ export default {
         "Montaj & demontaj (în oraș) incluse",
         "Adaptare la tematică (fonturi/culori)"
       ],
-      images: ["../../../public/img/nunta/panou-invitati/panou-invitati-oglinda.jpeg"]
+      images: ["/img/nunta/panou-invitati/panou-invitati-oglinda.jpeg"]
     },
   ]
 };

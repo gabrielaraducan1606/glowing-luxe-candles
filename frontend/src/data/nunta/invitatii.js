@@ -15,7 +15,7 @@ export default {
         "Culori: alb/ivory/grey (la cerere)",
         "Plic: nu este inclus in preț (5 lei/buc)"
       ],
-      images: ["../../../public/img/nunta/invitatii/invitatie-nunta2.jpeg"]
+      images: ["/img/nunta/invitatii/invitatie-nunta2.jpeg"]
     },
    {
       id: "inv-02",
@@ -30,7 +30,7 @@ export default {
         "Personalizare completă text + dată eveniment",
         "Ideală pentru stil modern luxury"
       ],
-      images: ["../../../public/img/nunta/invitatii/invitatie-nunta.png"]
+      images: ["/img/nunta/invitatii/invitatie-nunta.png"]
     },
     {
       id: "inv-03",
@@ -43,7 +43,7 @@ export default {
         "Legare cu panglică satinată (alb/ivory)",
         "Stil modern, original și foarte apreciat"
       ],
-      images: ["../../../public/img/nunta/invitatii/invitatie-nunta-ziar.png"]
+      images: ["/img/nunta/invitatii/invitatie-nunta-ziar.png"]
     },
     {
   id: "inv-04",
@@ -58,7 +58,7 @@ export default {
     "Personalizare completă: nume, dată, locație, program",
     "Se poate realiza cu plic și sigiliu wax (opțional)"
   ],
-  images: ["../../../public/img/nunta/invitatii/invitatie-nunta-tip-plic.png"]
+  images: ["/img/nunta/invitatii/invitatie-nunta-tip-plic.png"]
 }
 
   ]
