@@ -15,7 +15,7 @@ export default {
         "Personalizare completă text + culori",
         "Ideală pentru un botez modern și rafinat"
       ],
-      images: ["../../../public/img/botez/invitatii/botez1.png","../../../public/img/botez/invitatii/botez1.1.jpeg"]
+      images: ["/img/botez/invitatii/botez1.png","/img/botez/invitatii/botez1.1.jpeg"]
     },
     {
       id: "bot-inv-01",
@@ -30,7 +30,7 @@ export default {
         "Disponibilă în variante pentru băiat sau fată",
         "Stil modern, elegant și delicat"
       ],
-      images: ["../../../public/img/botez/invitatii/invitatie-botez-usulet.png", "../../../public/img/botez/invitatii/invitatie-botez-ursulet2.png"]
+      images: ["/img/botez/invitatii/invitatie-botez-usulet.png", "/img/botez/invitatii/invitatie-botez-ursulet2.png"]
     },
   ]
 };
