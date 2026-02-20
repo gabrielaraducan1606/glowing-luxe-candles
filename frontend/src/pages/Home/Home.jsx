@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
-import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 
 export default function Home() {
+
+  const whatsappMessage = encodeURIComponent(
+    "Bună ziua ✨\n\nAș dori o ofertă personalizată pentru un eveniment.\nData evenimentului: \nTip eveniment: \nBuget aproximativ: \n\nMulțumesc!"
+  );
+
+  const whatsappLink = `https://wa.me/qr/TJLNLSY2UY3ME1?text=${whatsappMessage}`;
+
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
@@ -18,12 +25,16 @@ export default function Home() {
             </p>
 
             <div className={styles.ctaRow}>
-              <Link className={`btnGold ${styles.btn}`} to="/contact">
-                Cere ofertă
-              </Link>
-              <Link className={`btnGhost ${styles.btn}`} to="/servicii">
-                Vezi servicii
-              </Link>
+              {/* 🔥 BUTON WHATSAPP */}
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noreferrer"
+                className={`btnGold ${styles.btn}`}
+              >
+                <FaWhatsapp style={{ marginRight: "8px" }} />
+                Cere ofertă pe WhatsApp
+              </a>
             </div>
 
             <div className={styles.badges}>
@@ -32,45 +43,44 @@ export default function Home() {
               <span className={styles.badge}>Luxury</span>
             </div>
 
-            {/* ✅ SOCIAL MEDIA */}
-<div className={styles.socialBlock}>
-  <p className={styles.socialText}>
-    Ne găsești și pe rețelele sociale ✨
-  </p>
+            {/* SOCIAL MEDIA */}
+            <div className={styles.socialBlock}>
+              <p className={styles.socialText}>
+                Ne găsești și pe rețelele sociale ✨
+              </p>
 
-  <div className={styles.socialRow}>
-    <a
-      href="https://www.facebook.com/share/1BUnn7Ffym/"
-      target="_blank"
-      rel="noreferrer"
-      className={styles.socialIcon}
-      aria-label="Facebook"
-    >
-      <FaFacebookF />
-    </a>
+              <div className={styles.socialRow}>
+                <a
+                  href="https://www.facebook.com/share/1BUnn7Ffym/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.socialIcon}
+                  aria-label="Facebook"
+                >
+                  <FaFacebookF />
+                </a>
 
-    <a
-      href="https://www.tiktok.com/@glowingluxecandles?_r=1&_t=ZN-93YO4Bjfkc2"
-      target="_blank"
-      rel="noreferrer"
-      className={styles.socialIcon}
-      aria-label="TikTok"
-    >
-      <FaTiktok />
-    </a>
+                <a
+                  href="https://www.tiktok.com/@glowingluxecandles?_r=1&_t=ZN-93YO4Bjfkc2"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.socialIcon}
+                  aria-label="TikTok"
+                >
+                  <FaTiktok />
+                </a>
 
-    <a
-      href="https://www.instagram.com/glowing.luxe.candles?utm_source=qr&igsh=eWw4enFuOGhud3lr"
-      target="_blank"
-      rel="noreferrer"
-      className={styles.socialIcon}
-      aria-label="Instagram"
-    >
-      <FaInstagram />
-    </a>
-  </div>
-</div>
-
+                <a
+                  href="https://www.instagram.com/glowing.luxe.candles?utm_source=qr&igsh=eWw4enFuOGhud3lr"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.socialIcon}
+                  aria-label="Instagram"
+                >
+                  <FaInstagram />
+                </a>
+              </div>
+            </div>
           </div>
 
           <div className={styles.heroCard}>

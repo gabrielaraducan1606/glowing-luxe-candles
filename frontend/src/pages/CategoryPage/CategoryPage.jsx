@@ -1,11 +1,15 @@
-import { useEffect,  useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { CATALOG } from "../../data/catalog";
 import styles from "./CategoryPage.module.css";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function CategoryPage() {
   const { group, slug } = useParams();
   const data = CATALOG?.[group]?.[slug];
+
+  // ✅ setează numărul tău aici (fără +, fără spații)
+  const WHATSAPP_NUMBER = "407XXXXXXXX";
 
   // lightbox state
   const [lbOpen, setLbOpen] = useState(false);
@@ -41,6 +45,45 @@ export default function CategoryPage() {
 
   const prev = () => setLbIndex((i) => Math.max(0, i - 1));
   const next = () => setLbIndex((i) => Math.min(lbImages.length - 1, i + 1));
+
+  // ✅ helper: compune mesaj WhatsApp pentru un produs
+  const buildWhatsappLinkForProduct = (p) => {
+    const categoryTitle = data?.title || `${group}/${slug}`;
+
+    const priceText =
+      p.priceFrom != null || p.priceTo != null
+        ? `Preț: ${p.priceFrom != null ? `de la ${p.priceFrom}` : ""}${
+            p.priceTo != null ? ` până la ${p.priceTo}` : ""
+          }${p.unit ? ` ${p.unit}` : ""}`
+        : "";
+
+    const detailsText =
+      Array.isArray(p.details) && p.details.length
+        ? `Detalii:\n- ${p.details.slice(0, 6).join("\n- ")}`
+        : "";
+
+    const msg = [
+      "Bună ziua ✨",
+      "",
+      "Aș dori o ofertă pentru produsul:",
+      `• ${p.name}`,
+      `Categorie: ${categoryTitle}`,
+      priceText ? priceText : null,
+      detailsText ? detailsText : null,
+      "",
+      "Date eveniment: ________",
+      "Localitate: ________",
+      "Cantitate / nr. invitați: ________",
+      "Tema/culori: ________",
+      "",
+      "Mulțumesc!"
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const encoded = encodeURIComponent(msg);
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
+  };
 
   // ESC + arrows
   useEffect(() => {
@@ -129,9 +172,7 @@ export default function CategoryPage() {
       <section className="section">
         <div className="container">
           <h2 className="h2">Categoria nu există</h2>
-          <p className="p">
-            Nu ai adăugat încă produse pentru {group}/{slug}.
-          </p>
+          <p className="p">Nu ai adăugat încă produse pentru {group}/{slug}.</p>
           <Link className="btnGold" to="/">
             Înapoi acasă
           </Link>
@@ -147,78 +188,96 @@ export default function CategoryPage() {
         {data.description && <p className="p">{data.description}</p>}
 
         <div className={styles.grid}>
-          {data.products.map((p) => (
-            <div className={`card ${styles.card}`} key={p.id}>
-              {p.images?.[0] ? (
-                <button
-                  type="button"
-                  className={styles.thumbBtn}
-                  onClick={() => openLightbox(p.images, 0)}
-                  aria-label={`Deschide pozele pentru ${p.name}`}
-                >
-                  <img
-                    src={p.images[0]}
-                    alt={p.name}
-                    className={styles.thumb}
-                    loading="lazy"
-                  />
-                  {p.images?.length > 1 && (
-                    <span className={styles.multiBadge}>{p.images.length} poze</span>
-                  )}
-                </button>
-              ) : (
-                <div className={styles.noImg}>Fără poză</div>
-              )}
+          {data.products.map((p) => {
+            const whatsappLink = buildWhatsappLinkForProduct(p);
 
-              <div className="cardTitle">{p.name}</div>
+            return (
+              <div className={`card ${styles.card}`} key={p.id}>
+                {p.images?.[0] ? (
+                  <button
+                    type="button"
+                    className={styles.thumbBtn}
+                    onClick={() => openLightbox(p.images, 0)}
+                    aria-label={`Deschide pozele pentru ${p.name}`}
+                  >
+                    <img
+                      src={p.images[0]}
+                      alt={p.name}
+                      className={styles.thumb}
+                      loading="lazy"
+                    />
+                    {p.images?.length > 1 && (
+                      <span className={styles.multiBadge}>{p.images.length} poze</span>
+                    )}
+                  </button>
+                ) : (
+                  <div className={styles.noImg}>Fără poză</div>
+                )}
 
-              {(p.priceFrom != null || p.priceTo != null) && (
-                <div className="cardText" style={{ marginTop: 6 }}>
-                  <strong>Preț:</strong>{" "}
-                  {p.priceFrom != null ? `de la ${p.priceFrom}` : ""}
-                  {p.priceTo != null ? ` până la ${p.priceTo}` : ""}
-                  {p.unit ? ` ${p.unit}` : ""}
+                <div className="cardTitle">{p.name}</div>
+
+                {(p.priceFrom != null || p.priceTo != null) && (
+                  <div className="cardText" style={{ marginTop: 6 }}>
+                    <strong>Preț:</strong>{" "}
+                    {p.priceFrom != null ? `de la ${p.priceFrom}` : ""}
+                    {p.priceTo != null ? ` până la ${p.priceTo}` : ""}
+                    {p.unit ? ` ${p.unit}` : ""}
+                  </div>
+                )}
+
+                {p.details?.length > 0 && (
+                  <ul className="list" style={{ marginTop: 10 }}>
+                    {p.details.map((d, i) => (
+                      <li key={i}>{d}</li>
+                    ))}
+                  </ul>
+                )}
+
+                {/* thumbnails mici sub poza principală (opțional) */}
+                {p.images?.length > 1 && (
+                  <div className={styles.miniRow}>
+                    {p.images.slice(0, 6).map((src, i) => (
+                      <button
+                        type="button"
+                        key={`${p.id}-mini-${i}`}
+                        className={styles.miniBtn}
+                        onClick={() => openLightbox(p.images, i)}
+                        aria-label={`Deschide poza ${i + 1}`}
+                      >
+                        <img src={src} alt="" className={styles.miniImg} loading="lazy" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {/* ✅ BUTON WHATSAPP PE PRODUS */}
+                <div style={{ marginTop: 12 }}>
+                  <a
+                    className="btnGold"
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Cere ofertă pe WhatsApp pentru ${p.name}`}
+                    style={{ display: "inline-flex", alignItems: "center", gap: 8 }}
+                  >
+                    <FaWhatsapp />
+                    Cere ofertă
+                  </a>
                 </div>
-              )}
-
-              {p.details?.length > 0 && (
-                <ul className="list" style={{ marginTop: 10 }}>
-                  {p.details.map((d, i) => (
-                    <li key={i}>{d}</li>
-                  ))}
-                </ul>
-              )}
-
-              {/* thumbnails mici sub poza principală (opțional) */}
-              {p.images?.length > 1 && (
-                <div className={styles.miniRow}>
-                  {p.images.slice(0, 6).map((src, i) => (
-                    <button
-                      type="button"
-                      key={`${p.id}-mini-${i}`}
-                      className={styles.miniBtn}
-                      onClick={() => openLightbox(p.images, i)}
-                      aria-label={`Deschide poza ${i + 1}`}
-                    >
-                      <img src={src} alt="" className={styles.miniImg} loading="lazy" />
-                    </button>
-                  ))}
-                </div>
-              )}
-
-              <div style={{ marginTop: 12 }}>
-                <Link className="btnGold" to={`/contact?prod=${encodeURIComponent(p.name)}`}>
-                  Cere ofertă
-                </Link>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
       {/* LIGHTBOX */}
       {lbOpen && (
-        <div className={styles.lbOverlay} role="dialog" aria-modal="true" onMouseDown={closeLightbox}>
+        <div
+          className={styles.lbOverlay}
+          role="dialog"
+          aria-modal="true"
+          onMouseDown={closeLightbox}
+        >
           <div className={styles.lb} onMouseDown={(e) => e.stopPropagation()}>
             <button className={styles.lbClose} onClick={closeLightbox} aria-label="Închide">
               ✕
