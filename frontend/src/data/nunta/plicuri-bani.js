@@ -1,8 +1,14 @@
-export default [
-  {
-    id: 1,
-    title: "Plic elegant pentru nuntă",
-    price: "10 lei",
-    image: "/images/plicuri/nunta1.jpg"
-  }
-];
+export default {
+  title: "Plicuri cu bani",
+  description: "Plicuri elegante, personalizate.",
+  products: [
+    {
+      id: 1,
+      name: "Plic elegant pentru nuntă",
+      images: ["/images/plicuri/nunta1.jpg"],
+      details: [],
+      priceFrom: 10,
+      unit: "lei"
+    }
+  ]
+};

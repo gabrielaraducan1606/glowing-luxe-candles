@@ -1,5 +1,5 @@
 export default {
-  title: "Aranjamente botez",
-  description: "Aranjamente elegante pentru botez, personalizate.",
+  title: "Mărturii botez",
+  description: "Mărturii elegante pentru botez, personalizate.",
   products: []
 };

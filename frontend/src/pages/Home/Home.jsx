@@ -8,13 +8,12 @@ export default function Home() {
   const WHATSAPP_NUMBER = "40765350676";
 
   const whatsappMessage = encodeURIComponent(
-    `Bună ziua ✨
+    `Bună ziua!
 
 Aș dori o ofertă personalizată pentru un eveniment.
 
 Data evenimentului:
 Tip eveniment:
-Număr invitați:
 Buget aproximativ:
 
 Mulțumesc!`

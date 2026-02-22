@@ -7,7 +7,7 @@ import nunta_tavita_mire from "./nunta/tavita-mire.js";
 import nunta_tavita_mireasa from "./nunta/tavita-mireasa.js";
 import nunta_aranjamente_masina from "./nunta/aranjamente-masina.js";
 
-// ✅ NOU: Plicuri cu bani (Nuntă)
+// ✅ Plicuri cu bani (Nuntă)
 import nunta_plicuri_cu_bani from "./nunta/plicuri-bani.js";
 
 import botez_invitatii from "./botez/invitatii.js";
@@ -18,10 +18,13 @@ import botez_trusou from "./botez/trusou.js";
 import botez_baita_a_doua_zi from "./botez/baita-a-doua-zi.js";
 import botez_haine_bebe from "./botez/haine-bebe.js";
 
-// ✅ NOU: Plicuri cu bani (Botez)
+// ✅ NOU: Aranjamente cristelniță (Botez)
+import botez_aranjamente_cristelnita from "./botez/aranjamente-cristelnita.js";
+
+// ✅ Plicuri cu bani (Botez)
 import botez_plicuri_cu_bani from "./botez/plicuri-bani.js";
 
-// ✅ MOT (folder: client/src/data/mot/)
+// ✅ MOT
 import mot_tavita_mot from "./mot/tavita-mot.js";
 
 import copii_elemente_decorative_tort from "./copii/elemente-decorative-tort.js";
@@ -36,7 +39,6 @@ export const CATALOG = {
     marturii: nunta_marturii,
     aranjamente: nunta_aranjamente,
 
-    // ✅ NOU
     "plicuri-cu-bani": nunta_plicuri_cu_bani,
 
     "panou-intrare-invitati": nunta_panou_intrare_invitati,
@@ -51,15 +53,15 @@ export const CATALOG = {
     aranjamente: botez_aranjamente,
 
     // ✅ NOU
-    "plicuri-cu-bani": botez_plicuri_cu_bani,
+    "aranjamente-cristelnita": botez_aranjamente_cristelnita,
 
+    "plicuri-cu-bani": botez_plicuri_cu_bani,
     "panou-invitati": botez_panou_invitati,
     trusou: botez_trusou,
     "baita-a-doua-zi": botez_baita_a_doua_zi,
     "haine-bebe": botez_haine_bebe
   },
 
-  // ✅ nou group: /mot/<slug>
   mot: {
     "tavita-mot": mot_tavita_mot
   },

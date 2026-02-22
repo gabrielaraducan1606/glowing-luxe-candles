@@ -1,5 +1,5 @@
 export default {
-  title: "Aranjamente botez",
-  description: "Aranjamente elegante pentru botez, personalizate.",
+  title: "Tăviță mire",
+  description: "Tăvițe mire.",
   products: []
 };

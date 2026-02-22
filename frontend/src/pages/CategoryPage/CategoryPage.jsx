@@ -63,7 +63,7 @@ export default function CategoryPage() {
         : "";
 
     const msg = [
-      "Bună ziua ✨",
+      "Bună ziua!",
       "",
       "Aș dori o ofertă pentru produsul:",
       `• ${p.name}`,
