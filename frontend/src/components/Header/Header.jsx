@@ -3,7 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import styles from "./Header.module.css";
 
-const INITIAL_EXPANDED = { nunta: false, botez: false, copii: false, mot: false };
+const INITIAL_EXPANDED = {
+  nunta: false,
+  botez: false,
+  copii: false,
+  mot: false
+};
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -31,6 +36,7 @@ export function Header() {
         label: "Botez",
         items: [
           { label: "Invitații", slug: "invitatii" },
+           { label: "Invitații digitale", slug: "invitatii-digitale" },
           { label: "Mărturii", slug: "marturii" },
           { label: "Aranjamente", slug: "aranjamente" },
           { label: "Plicuri cu bani", slug: "plicuri-cu-bani" },
@@ -70,13 +76,18 @@ export function Header() {
   const toggleMenu = useCallback(() => {
     setOpen((prev) => {
       const next = !prev;
-      if (next) setExpanded(INITIAL_EXPANDED);
+      if (next) {
+        setExpanded(INITIAL_EXPANDED);
+      }
       return next;
     });
   }, []);
 
   const toggleSection = useCallback((key) => {
-    setExpanded((s) => ({ ...s, [key]: !s[key] }));
+    setExpanded((prev) => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
   }, []);
 
   useEffect(() => {
@@ -106,6 +117,7 @@ export function Header() {
             aria-label="Open menu"
             aria-expanded={open}
             onClick={toggleMenu}
+            type="button"
           >
             <span className={`${styles.burgerLine} ${open ? styles.x1 : ""}`} />
             <span className={`${styles.burgerLine} ${open ? styles.x2 : ""}`} />
@@ -125,7 +137,12 @@ export function Header() {
             <img src={logo} alt="Artfest Atelier Evenimente" />
           </Link>
 
-          <button className={styles.drawerClose} onClick={closeMenu} aria-label="Close menu">
+          <button
+            className={styles.drawerClose}
+            onClick={closeMenu}
+            aria-label="Close menu"
+            type="button"
+          >
             ✕
           </button>
         </div>
@@ -143,35 +160,40 @@ export function Header() {
           </NavLink>
 
           <div className={styles.drawerGroup}>
-            {menu.map((group) => (
-              <div key={group.key} className={styles.drawerGroupBlock}>
-                <button
-                  className={styles.drawerGroupBtn}
-                  onClick={() => toggleSection(group.key)}
-                  aria-expanded={!!expanded[group.key]}
-                >
-                  <span>{group.label}</span>
-                  <span className={`${styles.chev} ${expanded[group.key] ? styles.up : ""}`}>
-                    ▾
-                  </span>
-                </button>
+            {menu.map((group) => {
+              const isExpanded = !!expanded[group.key];
 
-                <div
-                  className={`${styles.drawerSub} ${expanded[group.key] ? styles.open : ""}`}
-                >
-                  {group.items.map((it) => (
-                    <Link
-                      key={it.slug}
-                      className={styles.drawerSubLink}
-                      to={`/${group.key}/${it.slug}`}
-                      onClick={closeMenu}
-                    >
-                      {it.label}
-                    </Link>
-                  ))}
+              return (
+                <div key={group.key} className={styles.drawerGroupBlock}>
+                  <button
+                    className={styles.drawerGroupBtn}
+                    onClick={() => toggleSection(group.key)}
+                    aria-expanded={isExpanded}
+                    type="button"
+                  >
+                    <span>{group.label}</span>
+                    <span className={`${styles.chev} ${isExpanded ? styles.up : ""}`}>
+                      ▾
+                    </span>
+                  </button>
+
+                  <div className={`${styles.drawerSub} ${isExpanded ? styles.open : ""}`}>
+                    <div className={styles.drawerSubInner}>
+                      {group.items.map((it) => (
+                        <Link
+                          key={it.slug}
+                          className={styles.drawerSubLink}
+                          to={`/${group.key}/${it.slug}`}
+                          onClick={closeMenu}
+                        >
+                          {it.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <NavLink

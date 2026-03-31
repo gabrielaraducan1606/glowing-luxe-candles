@@ -11,6 +11,8 @@ import nunta_aranjamente_masina from "./nunta/aranjamente-masina.js";
 import nunta_plicuri_cu_bani from "./nunta/plicuri-bani.js";
 
 import botez_invitatii from "./botez/invitatii.js";
+
+import botezInvitatiiDigitale from "./botez/invitatii-digitale.js";
 import botez_marturii from "./botez/marturii.js";
 import botez_aranjamente from "./botez/aranjamente.js";
 import botez_panou_invitati from "./botez/panou-invitati.js";
@@ -49,6 +51,7 @@ export const CATALOG = {
 
   botez: {
     invitatii: botez_invitatii,
+     "invitatii-digitale": botezInvitatiiDigitale,
     marturii: botez_marturii,
     aranjamente: botez_aranjamente,
 
