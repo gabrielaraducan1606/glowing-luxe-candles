@@ -5,7 +5,7 @@ import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 export default function Home() {
 
   // ✅ PUNE NUMĂRUL TĂU REAL (fără +, fără spații)
-  const WHATSAPP_NUMBER = "40765350676";
+  const WHATSAPP_NUMBER = "40760565147";
 
   const whatsappMessage = encodeURIComponent(
     `Bună ziua!
@@ -26,7 +26,7 @@ Mulțumesc!`
       <section className={styles.hero}>
         <div className={`container ${styles.heroGrid}`}>
           <div>
-            <div className={styles.kicker}>Glowing Luxe Candles</div>
+            <div className={styles.kicker}>Artfest Atelier Evenimente</div>
 
             <h1 className={styles.h1}>
               Eleganță, lumină și detalii premium pentru evenimente.
@@ -65,7 +65,7 @@ Mulțumesc!`
 
               <div className={styles.socialRow}>
                 <a
-                  href="https://www.facebook.com/share/1BUnn7Ffym/"
+                  href="https://www.facebook.com/share/1B6MyKhTGf/?mibextid=wwXIfr"
                   target="_blank"
                   rel="noreferrer"
                   className={styles.socialIcon}
@@ -75,7 +75,7 @@ Mulțumesc!`
                 </a>
 
                 <a
-                  href="https://www.tiktok.com/@glowingluxecandles"
+                  href="https://www.tiktok.com/@artfest.atelier.e?_r=1&_t=ZN-958eJibR954"
                   target="_blank"
                   rel="noreferrer"
                   className={styles.socialIcon}
@@ -85,7 +85,7 @@ Mulțumesc!`
                 </a>
 
                 <a
-                  href="https://www.instagram.com/glowing.luxe.candles"
+                  href="https://www.instagram.com/artfestmarketplace?igsh=MWZ2YzFlYndrenA2Mg%3D%3D&utm_source=qr"
                   target="_blank"
                   rel="noreferrer"
                   className={styles.socialIcon}
@@ -122,7 +122,7 @@ Mulțumesc!`
 
       <section className={styles.section}>
         <div className="container">
-          <h2 className={styles.h2}>De ce Glowing Luxe</h2>
+          <h2 className={styles.h2}>De ce Artfest Atelier Evenimente</h2>
 
           <div className={styles.cards}>
             <div className={styles.card}>

@@ -68,12 +68,12 @@ export default function Contact() {
           </form>
 
           <div className="sideCard">
-            <div className="cardTitle">Glowing Luxe Candles</div>
+            <div className="cardTitle">Artfest Atelier Evenimente</div>
             <p className="p">Disponibilitate, pachete și personalizări.</p>
             <div className="mini">
-              <div><strong>Email:</strong> hello@glowingluxecandles.ro</div>
-              <div><strong>Telefon:</strong> +40 xxx xxx xxx</div>
-              <div><strong>Oraș:</strong> (completează)</div>
+              <div><strong>Email:</strong> support@artfest.ro</div>
+              <div><strong>Telefon:</strong> +40 760565147</div>
+              <div><strong>Oraș:</strong> Buzău</div>
             </div>
           </div>
         </div>

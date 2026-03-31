@@ -40,7 +40,11 @@ export function Header() {
           { label: "Haine bebe", slug: "haine-bebe" }
         ]
       },
-      { key: "mot", label: "Moț", items: [{ label: "Tăviță moț", slug: "tavita-mot" }] },
+      {
+        key: "mot",
+        label: "Moț",
+        items: [{ label: "Tăviță moț", slug: "tavita-mot" }]
+      },
       {
         key: "copii",
         label: "Copii",
@@ -56,7 +60,6 @@ export function Header() {
   );
 
   const closeMenu = useCallback(() => {
-    // evită warning-ul aria-hidden/focus
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
@@ -80,31 +83,46 @@ export function Header() {
     const onKeyDown = (e) => {
       if (e.key === "Escape") closeMenu();
     };
+
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [closeMenu]);
 
   return (
-    <header className="header">
-      <div className="container headerRow">
-        <Link to="/" className="brandLink" aria-label="Glowing Luxe Candles" onClick={closeMenu}>
-          <img src={logo} className="logoImg" alt="Glowing Luxe Candles" />
-        </Link>
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <div className={styles.headerRow}>
+          <Link
+            to="/"
+            className={styles.brandLink}
+            aria-label="Artfest Atelier Evenimente"
+            onClick={closeMenu}
+          >
+            <img src={logo} className={styles.logoImg} alt="Artfest Atelier Evenimente" />
+          </Link>
 
-        <button className="burger" aria-label="Open menu" aria-expanded={open} onClick={toggleMenu}>
-          <span className={`burgerLine ${open ? "x1" : ""}`} />
-          <span className={`burgerLine ${open ? "x2" : ""}`} />
-          <span className={`burgerLine ${open ? "x3" : ""}`} />
-        </button>
+          <button
+            className={styles.burger}
+            aria-label="Open menu"
+            aria-expanded={open}
+            onClick={toggleMenu}
+          >
+            <span className={`${styles.burgerLine} ${open ? styles.x1 : ""}`} />
+            <span className={`${styles.burgerLine} ${open ? styles.x2 : ""}`} />
+            <span className={`${styles.burgerLine} ${open ? styles.x3 : ""}`} />
+          </button>
+        </div>
       </div>
 
-      <div className={`menuOverlay ${open ? "open" : ""}`} onClick={closeMenu} />
+      <div
+        className={`${styles.menuOverlay} ${open ? styles.open : ""}`}
+        onClick={closeMenu}
+      />
 
-      {/* scoatem aria-hidden ca să nu mai apară warning-ul */}
-      <aside className={`drawer ${open ? "open" : ""}`}>
+      <aside className={`${styles.drawer} ${open ? styles.open : ""}`}>
         <div className={styles.drawerTop}>
           <Link to="/" onClick={closeMenu} className={styles.drawerLogo} aria-label="Home">
-            <img src={logo} alt="Glowing Luxe Candles" />
+            <img src={logo} alt="Artfest Atelier Evenimente" />
           </Link>
 
           <button className={styles.drawerClose} onClick={closeMenu} aria-label="Close menu">
@@ -112,33 +130,39 @@ export function Header() {
           </button>
         </div>
 
-        <nav className="drawerNav">
+        <nav className={styles.drawerNav}>
           <NavLink
             to="/"
             end
             onClick={closeMenu}
-            className={({ isActive }) => `drawerLink ${isActive ? "active" : ""}`}
+            className={({ isActive }) =>
+              `${styles.drawerLink} ${isActive ? styles.active : ""}`
+            }
           >
             Prezentare
           </NavLink>
 
-          <div className="drawerGroup">
+          <div className={styles.drawerGroup}>
             {menu.map((group) => (
-              <div key={group.key} className="drawerGroupBlock">
+              <div key={group.key} className={styles.drawerGroupBlock}>
                 <button
-                  className="drawerGroupBtn"
+                  className={styles.drawerGroupBtn}
                   onClick={() => toggleSection(group.key)}
                   aria-expanded={!!expanded[group.key]}
                 >
                   <span>{group.label}</span>
-                  <span className={`chev ${expanded[group.key] ? "up" : ""}`}>▾</span>
+                  <span className={`${styles.chev} ${expanded[group.key] ? styles.up : ""}`}>
+                    ▾
+                  </span>
                 </button>
 
-                <div className={`drawerSub ${expanded[group.key] ? "open" : ""}`}>
+                <div
+                  className={`${styles.drawerSub} ${expanded[group.key] ? styles.open : ""}`}
+                >
                   {group.items.map((it) => (
                     <Link
                       key={it.slug}
-                      className="drawerSubLink"
+                      className={styles.drawerSubLink}
                       to={`/${group.key}/${it.slug}`}
                       onClick={closeMenu}
                     >
@@ -153,14 +177,16 @@ export function Header() {
           <NavLink
             to="/contact"
             onClick={closeMenu}
-            className={({ isActive }) => `drawerLink ${isActive ? "active" : ""}`}
+            className={({ isActive }) =>
+              `${styles.drawerLink} ${isActive ? styles.active : ""}`
+            }
           >
             Contact
           </NavLink>
         </nav>
 
-        <div className="drawerCta">
-          <Link to="/contact" className="btnGold" onClick={closeMenu}>
+        <div className={styles.drawerCta}>
+          <Link to="/contact" className={styles.btnGold} onClick={closeMenu}>
             Cere ofertă
           </Link>
         </div>

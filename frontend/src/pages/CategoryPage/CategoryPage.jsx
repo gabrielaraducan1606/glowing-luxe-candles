@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import { CATALOG } from "../../data/catalog";
 import styles from "./CategoryPage.module.css";
@@ -8,10 +8,8 @@ export default function CategoryPage() {
   const { group, slug } = useParams();
   const data = CATALOG?.[group]?.[slug];
 
-  // ✅ numărul tău WhatsApp (fără +, fără spații)
-  const WHATSAPP_NUMBER = "40765350676";
+  const WHATSAPP_NUMBER = "40760565147";
 
-  // lightbox state
   const [lbOpen, setLbOpen] = useState(false);
   const [lbImages, setLbImages] = useState([]);
   const [lbIndex, setLbIndex] = useState(0);
@@ -34,19 +32,23 @@ export default function CategoryPage() {
     setLbOpen(true);
   };
 
-  const closeLightbox = () => {
+  const closeLightbox = useCallback(() => {
     setLbOpen(false);
     setLbImages([]);
     setLbIndex(0);
-  };
+  }, []);
 
   const canPrev = lbIndex > 0;
   const canNext = lbIndex < lbImages.length - 1;
 
-  const prev = () => setLbIndex((i) => Math.max(0, i - 1));
-  const next = () => setLbIndex((i) => Math.min(lbImages.length - 1, i + 1));
+  const prev = useCallback(() => {
+    setLbIndex((i) => Math.max(0, i - 1));
+  }, []);
 
-  // ✅ link WhatsApp per produs (conversație direct cu tine + mesaj precompletat)
+  const next = useCallback(() => {
+    setLbIndex((i) => Math.min(lbImages.length - 1, i + 1));
+  }, [lbImages.length]);
+
   const buildWhatsappLinkForProduct = (p) => {
     const categoryTitle = data?.title || `${group}/${slug}`;
 
@@ -68,8 +70,8 @@ export default function CategoryPage() {
       "Aș dori o ofertă pentru produsul:",
       `• ${p.name}`,
       `Categorie: ${categoryTitle}`,
-      priceText ? priceText : null,
-      detailsText ? detailsText : null,
+      priceText || null,
+      detailsText || null,
       "",
       "Data evenimentului: ________",
       "Localitate: ________",
@@ -84,7 +86,7 @@ export default function CategoryPage() {
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
   };
 
-  // ESC + arrows
+  // ✅ FIXED useEffect
   useEffect(() => {
     if (!lbOpen) return;
 
@@ -96,7 +98,6 @@ export default function CategoryPage() {
 
     window.addEventListener("keydown", onKeyDown);
 
-    // lock scroll
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
@@ -104,10 +105,8 @@ export default function CategoryPage() {
       window.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = prevOverflow;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lbOpen, lbImages.length]);
+  }, [lbOpen, prev, next, closeLightbox]);
 
-  // keep transform in sync
   useEffect(() => {
     if (!lbOpen || !trackRef.current) return;
     trackRef.current.style.transform = `translateX(${-lbIndex * 100}%)`;
@@ -135,7 +134,6 @@ export default function CategoryPage() {
     drag.current.currentX = e.clientX;
     const dx = drag.current.currentX - drag.current.startX;
 
-    // translate in %
     const width = track.getBoundingClientRect().width || 1;
     const deltaPct = (dx / width) * 100;
 
@@ -153,7 +151,7 @@ export default function CategoryPage() {
 
     const dx = drag.current.currentX - drag.current.startX;
     const width = track.getBoundingClientRect().width || 1;
-    const threshold = Math.max(50, width * 0.12); // swipe sensitivity
+    const threshold = Math.max(50, width * 0.12);
 
     track.style.transition = "";
 
@@ -162,18 +160,19 @@ export default function CategoryPage() {
     } else if (dx < -threshold && canNext) {
       next();
     } else {
-      // snap back
       track.style.transform = `translateX(${-lbIndex * 100}%)`;
     }
   };
 
   if (!hasData) {
     return (
-      <section className="section">
-        <div className="container">
-          <h2 className="h2">Categoria nu există</h2>
-          <p className="p">Nu ai adăugat încă produse pentru {group}/{slug}.</p>
-          <Link className="btnGold" to="/">
+      <section className={styles.page}>
+        <div className={styles.container}>
+          <h2 className={styles.title}>Categoria nu există</h2>
+          <p className={styles.description}>
+            Nu ai adăugat încă produse pentru {group}/{slug}.
+          </p>
+          <Link className={styles.btnGold} to="/">
             Înapoi acasă
           </Link>
         </div>
@@ -182,86 +181,29 @@ export default function CategoryPage() {
   }
 
   return (
-    <section className={`section ${styles.page}`}>
-      <div className="container">
-        <h1 className="h2">{data.title}</h1>
-        {data.description && <p className="p">{data.description}</p>}
+    <section className={styles.page}>
+      <div className={styles.container}>
+        <h1 className={styles.title}>{data.title}</h1>
+        {data.description && <p className={styles.description}>{data.description}</p>}
 
         <div className={styles.grid}>
           {data.products.map((p) => {
             const whatsappLink = buildWhatsappLinkForProduct(p);
 
             return (
-              <div className={`card ${styles.card}`} key={p.id}>
-                {p.images?.[0] ? (
-                  <button
-                    type="button"
-                    className={styles.thumbBtn}
-                    onClick={() => openLightbox(p.images, 0)}
-                    aria-label={`Deschide pozele pentru ${p.name}`}
-                  >
-                    <img
-                      src={p.images[0]}
-                      alt={p.name}
-                      className={styles.thumb}
-                      loading="lazy"
-                    />
-                    {p.images?.length > 1 && (
-                      <span className={styles.multiBadge}>{p.images.length} poze</span>
-                    )}
-                  </button>
-                ) : (
-                  <div className={styles.noImg}>Fără poză</div>
-                )}
+              <div className={styles.card} key={p.id}>
+                <button
+                  className={styles.thumbBtn}
+                  onClick={() => openLightbox(p.images, 0)}
+                >
+                  <img src={p.images?.[0]} className={styles.thumb} />
+                </button>
 
-                <div className="cardTitle">{p.name}</div>
+                <div className={styles.cardTitle}>{p.name}</div>
 
-                {(p.priceFrom != null || p.priceTo != null) && (
-                  <div className="cardText" style={{ marginTop: 6 }}>
-                    <strong>Preț:</strong>{" "}
-                    {p.priceFrom != null ? `de la ${p.priceFrom}` : ""}
-                    {p.priceTo != null ? ` până la ${p.priceTo}` : ""}
-                    {p.unit ? ` ${p.unit}` : ""}
-                  </div>
-                )}
-
-                {p.details?.length > 0 && (
-                  <ul className="list" style={{ marginTop: 10 }}>
-                    {p.details.map((d, i) => (
-                      <li key={i}>{d}</li>
-                    ))}
-                  </ul>
-                )}
-
-                {/* thumbnails mici sub poza principală (opțional) */}
-                {p.images?.length > 1 && (
-                  <div className={styles.miniRow}>
-                    {p.images.slice(0, 6).map((src, i) => (
-                      <button
-                        type="button"
-                        key={`${p.id}-mini-${i}`}
-                        className={styles.miniBtn}
-                        onClick={() => openLightbox(p.images, i)}
-                        aria-label={`Deschide poza ${i + 1}`}
-                      >
-                        <img src={src} alt="" className={styles.miniImg} loading="lazy" />
-                      </button>
-                    ))}
-                  </div>
-                )}
-
-                {/* ✅ BUTON WHATSAPP PE PRODUS */}
-                <div style={{ marginTop: 12 }}>
-                  <a
-                    className="btnGold"
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`Cere ofertă pe WhatsApp pentru ${p.name}`}
-                    style={{ display: "inline-flex", alignItems: "center", gap: 8 }}
-                  >
-                    <FaWhatsapp />
-                    Cere ofertă
+                <div className={styles.ctaWrap}>
+                  <a className={styles.btnGold} href={whatsappLink} target="_blank">
+                    <FaWhatsapp /> Cere ofertă
                   </a>
                 </div>
               </div>
@@ -270,16 +212,10 @@ export default function CategoryPage() {
         </div>
       </div>
 
-      {/* LIGHTBOX */}
       {lbOpen && (
-        <div
-          className={styles.lbOverlay}
-          role="dialog"
-          aria-modal="true"
-          onMouseDown={closeLightbox}
-        >
+        <div className={styles.lbOverlay} onMouseDown={closeLightbox}>
           <div className={styles.lb} onMouseDown={(e) => e.stopPropagation()}>
-            <button className={styles.lbClose} onClick={closeLightbox} aria-label="Închide">
+            <button className={styles.lbClose} onClick={closeLightbox}>
               ✕
             </button>
 
@@ -290,49 +226,14 @@ export default function CategoryPage() {
                 onPointerDown={onPointerDown}
                 onPointerMove={onPointerMove}
                 onPointerUp={onPointerUp}
-                onPointerCancel={onPointerUp}
               >
                 {lbImages.map((src, i) => (
-                  <div className={styles.lbSlide} key={`${src}-${i}`}>
-                    <img className={styles.lbImg} src={src} alt={`Imagine ${i + 1}`} />
+                  <div className={styles.lbSlide} key={i}>
+                    <img src={src} className={styles.lbImg} />
                   </div>
                 ))}
               </div>
-
-              {lbImages.length > 1 && (
-                <>
-                  <button
-                    className={`${styles.lbNav} ${styles.left}`}
-                    onClick={prev}
-                    disabled={!canPrev}
-                    aria-label="Anterior"
-                  >
-                    ‹
-                  </button>
-                  <button
-                    className={`${styles.lbNav} ${styles.right}`}
-                    onClick={next}
-                    disabled={!canNext}
-                    aria-label="Următor"
-                  >
-                    ›
-                  </button>
-                </>
-              )}
             </div>
-
-            {lbImages.length > 1 && (
-              <div className={styles.dots} aria-label="Navigare imagini">
-                {lbImages.map((_, i) => (
-                  <button
-                    key={i}
-                    className={`${styles.dot} ${i === lbIndex ? styles.dotActive : ""}`}
-                    onClick={() => setLbIndex(i)}
-                    aria-label={`Mergi la imaginea ${i + 1}`}
-                  />
-                ))}
-              </div>
-            )}
           </div>
         </div>
       )}
