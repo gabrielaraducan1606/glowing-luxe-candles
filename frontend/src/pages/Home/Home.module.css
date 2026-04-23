@@ -319,3 +319,14 @@
     box-shadow: 0 0 0px rgba(255, 215, 0, 0.2);
   }
 }
+.secretButton {
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  opacity: 0.03;
+  background: #000;
+  border-radius: 50%;
+  z-index: 9999;
+}

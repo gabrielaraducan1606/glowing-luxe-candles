@@ -4,6 +4,8 @@ import Home from "./pages/Home/Home.jsx";
 import Services from "./pages/Services.jsx";
 import Contact from "./pages/Contact.jsx";
 import CategoryPage from "./pages/CategoryPage/CategoryPage.jsx";
+import SeatingFinder from "./components/SeatingFinder/SeatingFinder.jsx";
+
 import "./styles.css";
 
 export default function App() {
@@ -16,6 +18,8 @@ export default function App() {
           <Route path="/servicii" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/:group/:slug" element={<CategoryPage />} />
+          
+<Route path="/mese" element={<SeatingFinder />} />
         </Routes>
       </main>
     </>

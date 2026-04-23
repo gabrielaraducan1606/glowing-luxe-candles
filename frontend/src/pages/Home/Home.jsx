@@ -3,7 +3,6 @@ import styles from "./Home.module.css";
 import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 
 export default function Home() {
-
   // ✅ PUNE NUMĂRUL TĂU REAL (fără +, fără spații)
   const WHATSAPP_NUMBER = "40760565147";
 
@@ -38,7 +37,7 @@ Mulțumesc!`
             </p>
 
             <div className={styles.ctaRow}>
-              {/* ✅ BUTON WHATSAPP DIRECT CU TINE */}
+              {/* ✅ BUTON WHATSAPP */}
               <a
                 href={whatsappLink}
                 target="_blank"
@@ -69,7 +68,6 @@ Mulțumesc!`
                   target="_blank"
                   rel="noreferrer"
                   className={styles.socialIcon}
-                  aria-label="Facebook"
                 >
                   <FaFacebookF />
                 </a>
@@ -79,17 +77,15 @@ Mulțumesc!`
                   target="_blank"
                   rel="noreferrer"
                   className={styles.socialIcon}
-                  aria-label="TikTok"
                 >
                   <FaTiktok />
                 </a>
 
                 <a
-                  href="https://www.instagram.com/artfestmarketplace?igsh=MWZ2YzFlYndrenA2Mg%3D%3D&utm_source=qr"
+                  href="https://www.instagram.com/artfestmarketplace"
                   target="_blank"
                   rel="noreferrer"
                   className={styles.socialIcon}
-                  aria-label="Instagram"
                 >
                   <FaInstagram />
                 </a>
@@ -148,6 +144,11 @@ Mulțumesc!`
           </div>
         </div>
       </section>
+
+      {/* 🔒 BUTON INVIZIBIL */}
+      <Link to="/mese" className={styles.secretButton}>
+        .
+      </Link>
     </div>
   );
 }
