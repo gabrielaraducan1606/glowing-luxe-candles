@@ -8,6 +8,7 @@ const GUESTS = [
   { name: "Birou Corina", table: "Masa 1" },
   { name: "Petcovici Dorina", table: "Masa 1" },
   { name: "Petcovici Andrei", table: "Masa 1" },
+  { name: "Petcovici Alexandru", table: "Masa 1" },
   { name: "Petcovici Yanis", table: "Masa 1" },
   { name: "Manole Bobi", table: "Masa 1" },
   { name: "Manole Valentina", table: "Masa 1" },
@@ -99,6 +100,8 @@ const GUESTS = [
   { name: "Căpățână Andrei", table: "Masa 10" },
   { name: "Andraș Marius", table: "Masa 10" },
   { name: "Andraș Diana", table: "Masa 10" },
+  { name: "Drîmbu Bogdan", table: "Masa 10" },
+  { name: "Drîmbu Andreea", table: "Masa 10" },
 ];
 
 function normalizeText(value) {
