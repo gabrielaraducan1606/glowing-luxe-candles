@@ -1,5 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "./SeatingFinder.module.css";
+
+const CHILD_NAME = "Edan Andrei";
 
 const GUESTS = [
   { name: "Bărzoiu Laurențiu", table: "Masa 1" },
@@ -118,10 +120,17 @@ function normalizeText(value) {
 
 export default function SeatingFinderGenerated() {
   const [query, setQuery] = useState("");
+  const [showIntro, setShowIntro] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowIntro(false);
+    }, 2400);
+    return () => clearTimeout(timer);
+  }, []);
 
   const results = useMemo(() => {
     const normalizedQuery = normalizeText(query);
-
     if (!normalizedQuery) return [];
 
     return GUESTS.filter((guest) =>
@@ -131,6 +140,27 @@ export default function SeatingFinderGenerated() {
 
   return (
     <div className={styles.page}>
+      {showIntro && (
+        <div className={styles.intro}>
+          <div className={styles.introGlow} />
+
+          <div className={styles.gateWrapper}>
+            <div className={styles.gateDoorLeft} />
+            <div className={styles.gateDoorRight} />
+          </div>
+
+         <div className={styles.introContent}>
+  <img src="/bear.png" alt="Ursuleț botez" className={styles.bearImage} />
+
+  <div className={styles.welcomeText}>Bine ați venit</div>
+
+  <div className={styles.introSmall}>la Sfântul Botez al lui</div>
+
+  <div className={styles.introName}>{CHILD_NAME}</div>
+</div>
+        </div>
+      )}
+
       <div className={styles.overlay} />
 
       <div className={styles.card}>
@@ -152,42 +182,28 @@ export default function SeatingFinderGenerated() {
 
         {!query.trim() ? (
           <div className={styles.infoBox}>
-            Introdu numele complet sau doar o parte din el. Căutarea merge și
-            fără diacritice.
+            Introdu numele complet sau doar o parte din el.
           </div>
         ) : results.length === 0 ? (
           <div className={styles.warningBox}>
-            Nu am găsit niciun rezultat pentru <strong>{query}</strong>.
-            <br />
-            Verifică ortografia sau încearcă doar numele de familie.
+            Nu am găsit rezultat.
           </div>
         ) : (
-          <div className={styles.resultsSection}>
-            <div className={styles.resultsCount}>
-              {results.length} rezultat{results.length > 1 ? "e" : ""}
-            </div>
-
-            <div className={styles.resultsList}>
-              {results.map((guest) => (
-                <div
-                  key={`${guest.name}-${guest.table}`}
-                  className={styles.resultCard}
-                >
-                  <div>
-                    <div className={styles.guestName}>{guest.name}</div>
-                    <div className={styles.resultLabel}>Repartizat la</div>
-                  </div>
-
-                  <div className={styles.tableBadge}>{guest.table}</div>
+          <div className={styles.resultsList}>
+            {results.map((guest) => (
+              <div key={guest.name} className={styles.resultCard}>
+                <div>
+                  <div className={styles.guestName}>{guest.name}</div>
+                  <div className={styles.resultLabel}>Repartizat la</div>
                 </div>
-              ))}
-            </div>
+                <div className={styles.tableBadge}>{guest.table}</div>
+              </div>
+            ))}
           </div>
         )}
 
         <div className={styles.footer}>
-          <div>Total invitați introduși: {GUESTS.length}</div>
-         
+          Total invitați: {GUESTS.length}
         </div>
       </div>
     </div>
